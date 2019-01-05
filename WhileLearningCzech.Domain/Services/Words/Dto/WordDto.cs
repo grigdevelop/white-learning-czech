@@ -1,19 +1,18 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
 using WhileLearningCzech.Domain.Core.Abstract;
 
-namespace WhileLearningCzech.Domain.Core.Data
+namespace WhileLearningCzech.Domain.Services.Words.Dto
 {
-    public class Word : IEntity
+    public class WordDto : IEntityDto
     {
         public int Id { get; set; }
 
+        [Required]
         public string Czech { get; set; }
 
+        [Required]
         public string English { get; set; }
 
         public int? WordGroupId { get; set; }
-
-        [ForeignKey("WordGroupId")]
-        public WordGroup WordGroup { get; set; }
     }
 }

@@ -1,0 +1,27 @@
+﻿<div class="row">
+    <div class="col">
+        <table class="table table-sm table-responsive-sm">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="wordGroup in wordGroups">
+                <th scope="row">{{ wordGroup.id }}</th>
+                <td>{{ wordGroup.name }}</td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button ng-click="updateWordGroup(wordGroup)" type="button" class="btn btn-info">Update</button>
+                        <button ng-click="deleteWordGroup(wordGroup)" type="button" class="btn btn-danger">Delete</button>
+                    </div>
+                </td>              
+            </tr>           
+            </tbody>
+        </table>
+        <button ng-click="createWordGroup()" class="btn btn-primary">Add Word Group</button>
+    </div>
+</div>
+<save-word-group-dialog></save-word-group-dialog>

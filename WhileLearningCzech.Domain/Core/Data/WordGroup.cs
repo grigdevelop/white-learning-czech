@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using WhileLearningCzech.Domain.Core.Abstract;
 
 namespace WhileLearningCzech.Domain.Core.Data
 {
-    public class WordGroup
+    public class WordGroup : IEntity
     {
         public int Id { get; set; }
 

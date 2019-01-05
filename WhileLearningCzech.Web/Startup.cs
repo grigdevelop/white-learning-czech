@@ -10,7 +10,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using WhileLearningCzech.Domain.Core;
+using WhileLearningCzech.Domain.Mapper;
 using WhileLearningCzech.Domain.Services.Users;
+using WhileLearningCzech.Domain.Services.WordGroups;
+using WhileLearningCzech.Domain.Services.Words;
 using WhileLearningCzech.Web.Helpers;
 
 namespace WhileLearningCzech.Web
@@ -60,6 +63,8 @@ namespace WhileLearningCzech.Web
             });
 
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IWordGroupService, WordGroupService>();
+            services.AddScoped<IWordService, WordService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -80,7 +85,11 @@ namespace WhileLearningCzech.Web
             app.UseSpaStaticFiles();
 
             app.UseAuthentication();
-            
+
+            app.UseExceptionHandler(new ExceptionHandlerOptions
+            {
+                ExceptionHandler = new JsonExceptionMiddleware().Invoke
+            });
 
             app.UseMvc(routes =>
             {
@@ -93,6 +102,8 @@ namespace WhileLearningCzech.Web
             {
                 spa.Options.SourcePath = "ClientApp";               
             });
+
+            AutoMapperExtensions.Configure();
         }
     }
 }

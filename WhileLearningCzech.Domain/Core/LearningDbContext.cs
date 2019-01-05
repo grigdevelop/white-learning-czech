@@ -10,6 +10,10 @@ namespace WhileLearningCzech.Domain.Core
     {
         public DbSet<User> Users { get; set; }
 
+        public DbSet<WordGroup> WordGroups { get; set; }
+
+        public DbSet<Word> Words { get; set; }
+
         public LearningDbContext(DbContextOptions options)
             :base(options)
         {

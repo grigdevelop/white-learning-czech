@@ -33,6 +33,12 @@
                 templateUrl: "views/admin/words/words.view.html",
                 controller: "WordsCtrl"
             };
+            routes.adminWordGroups = {
+                name: "admin.wordGroups",
+                url: "/wordGroups",
+                templateUrl: "views/admin/wordGroups/wordGroups.view.html",
+                controller: "WordGroupsCtrl"
+            };
 
             addAuth(routes.admin);
 

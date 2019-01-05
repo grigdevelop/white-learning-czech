@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>While Learning Czech</title>
-    <base href="/"/>
+    <base href="/" />
 
 
     <link rel="stylesheet" href="libs/bootstrap/bootstrap.css" />
@@ -28,6 +28,7 @@
     </footer>
 
     <ng-message-dialog></ng-message-dialog>
+    <ng-confirm-dialog></ng-confirm-dialog>
 
     <script src="libs/jquery/jquery.min.js"></script>
     <script src="libs/bootstrap/bootstrap.js"></script>
@@ -39,17 +40,25 @@
     <script src="services/dialog.service.js"></script>
     <script src="services/request.service.js"></script>
     <script src="services/auth.service.js"></script>
+    <script src="services/wordGroup.service.js"></script>
+    <script src="services/word.service.js"></script>
 
     <!-- components -->
     <script src="components/navbar/navbar.controller.js"></script>
     <script src="components/header/header.controller.js"></script>
+    <script src="views/admin/words/tables/words.table.js"></script>
+    <script src="views/admin/wordGroups/dropdown/wordGroups.dropdown.js"></script>
 
     <!-- dialogs -->
     <script src="components/dialogs/message/message.dialog.js"></script>
+    <script src="components/dialogs/confirm/confirm.dialog.js"></script>
+    <script src="views/admin/wordGroups/dialogs/save/saveWordGroup.dialog.js"></script>
+    <script src="views/admin/words/dialogs/save/saveWord.dialog.js"></script>
 
     <!-- views -->
     <script src="views/login/login.controller.js"></script>
     <script src="views/admin/admin.view.js"></script>
     <script src="views/admin/words/words.view.js"></script>
+    <script src="views/admin/wordGroups/wordGroups.view.js"></script>
 </body>
 </html>

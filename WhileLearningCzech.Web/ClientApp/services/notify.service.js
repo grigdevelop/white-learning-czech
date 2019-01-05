@@ -5,12 +5,16 @@
         var service = {};
 
         function subscribe(name, callback) {
-            $rootScope.$on(name, callback);
+            return $rootScope.$on(name, callback);
         }
 
         function notify(name, data) {
             $rootScope.$emit(name, data);
         }
+
+        function unSubscribe(name, callback) {
+
+        };
 
         service.subscribe = subscribe;
         service.notify = notify;

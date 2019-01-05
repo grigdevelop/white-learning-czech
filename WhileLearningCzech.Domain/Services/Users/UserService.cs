@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using WhileLearningCzech.Domain.Core;
+using WhileLearningCzech.Domain.Core.Data;
 using WhileLearningCzech.Domain.Services.Users.Dto;
+using WhileLearningCzech.Domain.Mapper;
 
 namespace WhileLearningCzech.Domain.Services.Users
 {
@@ -23,8 +25,8 @@ namespace WhileLearningCzech.Domain.Services.Users
             var user = await _db.Users.FirstOrDefaultAsync(u => u.Username == username
                            && u.PasswordHash == passwordHash);
 
-            if (user == null) return null;
-            return new UserDto { Id = user.Id, PasswordHash = user.PasswordHash, Username = user.Username };
+
+            return user.ToEntityDto<UserDto, User>();
         }
     }
 }

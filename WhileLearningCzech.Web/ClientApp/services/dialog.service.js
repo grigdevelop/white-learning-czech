@@ -12,6 +12,10 @@
             $("#" + id).modal("show");
         }
 
+        function hideDialog(id) {
+            $("#" + id).modal("hide");
+        }
+
         function subscribe(name, callback) {
             // every dialog has only one subsriber
             subscribers[name] = callback;
@@ -23,17 +27,28 @@
             }
         }
 
-        function dialogConreteInit() {
+        function dialogConcreteInit() {
             service.dialogs.showMessageDialog = function (title, message) {
                 publish("ngMessageDialog", { title: title, message: message });
+            };
+            service.dialogs.confirmDialog = function(title, message, callback) {
+                publish("ngConfirmDialog", { title: title, message: message, callback });
+            };
+
+            service.dialogs.showSaveWordGroupDialog = function(wordGroup) {
+                publish("saveWordGroupDialog", JSON.parse(JSON.stringify(wordGroup)));
+            };
+            service.dialogs.showSaveWordDialog = function (word) {
+                publish("saveWordDialog", JSON.parse(JSON.stringify(word)));
             };
         }
 
         service.subscribe = subscribe;
         service.publish = publish;
         service.showDialog = showDialog;
+        service.hideDialog = hideDialog;
 
-        dialogConreteInit();
+        dialogConcreteInit();
         return service;
     }
 

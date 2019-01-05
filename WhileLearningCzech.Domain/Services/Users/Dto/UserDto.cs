@@ -1,6 +1,8 @@
-﻿namespace WhileLearningCzech.Domain.Services.Users.Dto
+﻿using WhileLearningCzech.Domain.Core.Abstract;
+
+namespace WhileLearningCzech.Domain.Services.Users.Dto
 {
-    public class UserDto
+    public class UserDto : IEntityDto
     {
         public int Id { get; set; }
 
