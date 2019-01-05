@@ -4,6 +4,7 @@
             <th scope="col">#</th>
             <th scope="col">Czech</th>
             <th scope="col">English</th>
+            <th scope="col">Word Group</th>
             <th scope="col">Actions</th>
         </tr>
     </thead>
@@ -12,6 +13,11 @@
             <th scope="row">{{ word.id }}</th>
             <td>{{ word.czech }}</td>
             <td>{{ word.english }}</td>
+            <td>
+                <span ng-if="word.wordGroup">
+                    {{word.wordGroup.name}}
+                </span>
+            </td>
             <td>
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <button ng-click="updateWord(word)" type="button" class="btn btn-info">Update</button>

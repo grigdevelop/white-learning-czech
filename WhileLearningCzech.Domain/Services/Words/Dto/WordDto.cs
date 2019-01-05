@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using WhileLearningCzech.Domain.Core.Abstract;
+using WhileLearningCzech.Domain.Services.WordGroups.Dto;
 
 namespace WhileLearningCzech.Domain.Services.Words.Dto
 {
@@ -14,5 +15,7 @@ namespace WhileLearningCzech.Domain.Services.Words.Dto
         public string English { get; set; }
 
         public int? WordGroupId { get; set; }
+
+        public virtual WordGroupDto WordGroup { get; set; }
     }
 }

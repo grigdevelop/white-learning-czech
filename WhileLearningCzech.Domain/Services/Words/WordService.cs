@@ -22,7 +22,7 @@ namespace WhileLearningCzech.Domain.Services.Words
         {
             if(input == null) input = new SearchWordDto();
 
-            var query = _db.Words.AsQueryable();
+            var query = _db.Words.Include(x => x.WordGroup).AsQueryable();
 
             if (input.GroupId.HasValue && input.GroupId.Value != 0)
                 query = query.Where(x => x.WordGroupId == input.GroupId);

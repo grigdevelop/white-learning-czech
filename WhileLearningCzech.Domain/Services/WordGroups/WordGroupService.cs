@@ -58,6 +58,10 @@ namespace WhileLearningCzech.Domain.Services.WordGroups
             if (dbWordGroup == null)
                 throw new ApiException("WordGroup not found");
 
+            // removing all references from children
+            await _db.Words.Where(x => x.WordGroupId == dbWordGroup.Id).ForEachAsync(item => item.WordGroupId = null);
+            await _db.SaveChangesAsync();
+
             _db.WordGroups.Remove(dbWordGroup);
             await _db.SaveChangesAsync();
             return dbWordGroup.ToEntityDto<WordGroupDto, WordGroup>();
