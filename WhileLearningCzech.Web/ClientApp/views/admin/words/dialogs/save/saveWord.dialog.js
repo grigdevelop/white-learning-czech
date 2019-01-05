@@ -3,7 +3,7 @@
         // subscribe to show event
         dialogService.subscribe("saveWordDialog", onDialogShow);
 
-        $scope.word = { english: "", czech: "" };
+        $scope.word = { english: "", czech: "", wordGroupId: null };
 
         function onDialogShow(data) {
             $scope.word = data;
@@ -32,6 +32,11 @@
             }
         }
 
+        function groupChanged(groupId) {
+            $scope.word.wordGroupId = groupId;
+        }
+
+        $scope.groupChanged = groupChanged;
         $scope.saveWord = saveWord;
     }
 

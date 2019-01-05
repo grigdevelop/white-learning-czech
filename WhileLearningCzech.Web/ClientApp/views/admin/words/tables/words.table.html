@@ -12,7 +12,12 @@
             <th scope="row">{{ word.id }}</th>
             <td>{{ word.czech }}</td>
             <td>{{ word.english }}</td>
-            <td>tralala</td>
+            <td>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button ng-click="updateWord(word)" type="button" class="btn btn-info">Update</button>
+                    <button ng-click="deleteWord(word)" type="button" class="btn btn-danger">Delete</button>
+                </div>
+            </td>
         </tr>
     </tbody>
 </table>

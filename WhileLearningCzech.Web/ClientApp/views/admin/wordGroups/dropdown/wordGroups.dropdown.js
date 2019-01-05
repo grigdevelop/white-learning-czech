@@ -1,21 +1,29 @@
 ﻿(function () {
     function wordGroupsDropdown($scope, wordGroupService) {
+        console.log("entering  dropdown");
         var ctrl = this;
         $scope.wordGroups = [];
-        $scope.selectedWordGroup = {};
+        $scope.selectedWordGroupId = null;
 
         function loadWordGroups() {
             wordGroupService.getWordGroups()
-                .then(function(wordGroups) {
-                    $scope.wordGroups = wordGroups;
-                    $scope.wordGroups.unshift({ name: "[[no group]]", id: null });
-                    $scope.selectedWordGroup = null;
+                .then(function (wordGroups) {
+                    $scope.wordGroups = wordGroups;                    
                 });
         }
 
         function wordGroupChanged() {
-            ctrl.onChange({ groupId: $scope.selectedWordGroup});
+            console.log("calling custom dropdown change");
+            ctrl.onChange({ groupId: $scope.selectedWordGroupId });
         }
+
+        ctrl.$onChanges = function (changes) {
+
+            if (changes.selectedWordGroupId) {
+                $scope.selectedWordGroupId = changes.selectedWordGroupId.currentValue;
+
+            }
+        };
 
         $scope.wordGroupChanged = wordGroupChanged;
 
@@ -30,7 +38,8 @@
                 templateUrl: "views/admin/wordGroups/dropdown/wordGroups.dropdown.html",
                 controller: ["$scope", "wordGroupService", wordGroupsDropdown],
                 bindings: {
-                    onChange: "&"
+                    onChange: "&",
+                    selectedWordGroupId: "<"
                 }
             });
 })();
