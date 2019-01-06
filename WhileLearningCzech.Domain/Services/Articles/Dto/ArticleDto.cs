@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using WhileLearningCzech.Domain.Core.Abstract;
 
 namespace WhileLearningCzech.Domain.Services.Articles.Dto
@@ -11,5 +12,12 @@ namespace WhileLearningCzech.Domain.Services.Articles.Dto
         public string Title { get; set; }
 
         public string Content { get; set; }
+
+        public DateTime? DatePublished { get; set; }
+
+        public ArticleDto()
+        {
+            DatePublished = DateTime.UtcNow;
+        }
     }
 }

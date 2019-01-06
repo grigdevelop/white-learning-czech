@@ -7,6 +7,7 @@
             articleService.search()
                 .then(function(articles) {
                     $scope.articles = articles;
+                    console.log(articles[0]);
                 });
         }
 

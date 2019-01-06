@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhileLearningCzech.Web", "W
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhileLearningCzech.Domain", "WhileLearningCzech.Domain\WhileLearningCzech.Domain.csproj", "{CB0C1B9D-8A60-483B-A215-C301D897BBA9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalWebsite.Tests", "PersonalWebsite.Tests\PersonalWebsite.Tests.csproj", "{67CED21E-E97B-4A72-BC97-4E6747CB15F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalWebsite.Tests", "PersonalWebsite.Tests\PersonalWebsite.Tests.csproj", "{67CED21E-E97B-4A72-BC97-4E6747CB15F3}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "PersonalWebsite.Database", "PersonalWebsite.Database\PersonalWebsite.Database.sqlproj", "{C5BF779C-3455-4813-823A-C0B474D8B6E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,12 @@ Global
 		{67CED21E-E97B-4A72-BC97-4E6747CB15F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67CED21E-E97B-4A72-BC97-4E6747CB15F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67CED21E-E97B-4A72-BC97-4E6747CB15F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5BF779C-3455-4813-823A-C0B474D8B6E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5BF779C-3455-4813-823A-C0B474D8B6E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5BF779C-3455-4813-823A-C0B474D8B6E6}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C5BF779C-3455-4813-823A-C0B474D8B6E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5BF779C-3455-4813-823A-C0B474D8B6E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5BF779C-3455-4813-823A-C0B474D8B6E6}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

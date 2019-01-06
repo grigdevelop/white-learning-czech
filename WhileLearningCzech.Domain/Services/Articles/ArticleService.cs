@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 using WhileLearningCzech.Domain.Core;
@@ -36,6 +37,7 @@ namespace WhileLearningCzech.Domain.Services.Articles
                 throw new ApiException("Article with this title already exists");
 
             article.Content = _htmlImagesService.ParseHtmlImages(article.Content);
+            article.DatePublished = DateTime.UtcNow;
 
             var entity = article.ToEntity<Article, ArticleDto>();
             await _db.Articles.AddAsync(entity);
@@ -55,6 +57,7 @@ namespace WhileLearningCzech.Domain.Services.Articles
 
             entity.Title = article.Title;
             entity.Content = article.Content;
+            entity.DatePublished = DateTime.UtcNow;
             _db.Articles.Update(entity);
             await _db.SaveChangesAsync();
 
