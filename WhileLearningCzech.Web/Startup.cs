@@ -1,3 +1,4 @@
+using System.IO;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -8,13 +9,17 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using WhileLearningCzech.Domain.Core;
 using WhileLearningCzech.Domain.Mapper;
+using WhileLearningCzech.Domain.Services.Articles;
+using WhileLearningCzech.Domain.Services.Media;
 using WhileLearningCzech.Domain.Services.Users;
 using WhileLearningCzech.Domain.Services.WordGroups;
 using WhileLearningCzech.Domain.Services.Words;
 using WhileLearningCzech.Web.Helpers;
+using WhileLearningCzech.Web.Services;
 
 namespace WhileLearningCzech.Web
 {
@@ -59,12 +64,15 @@ namespace WhileLearningCzech.Web
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
-                configuration.RootPath = "ClientApp";
-            });
+                configuration.RootPath = "ClientApp";                
+            });            
 
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IWordGroupService, WordGroupService>();
             services.AddScoped<IWordService, WordService>();
+            services.AddScoped<IArticleService, ArticleService>();
+            services.AddScoped<IDirService, DirService>();
+            services.AddScoped<IHtmlImagesService, HtmlImagesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -96,6 +104,13 @@ namespace WhileLearningCzech.Web
                 routes.MapRoute(
                     name: "default",
                     template: "{controller}/{action=Index}/{id?}");
+            });
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), "Content")),
+                RequestPath = "/content"
             });
 
             app.UseSpa(spa =>

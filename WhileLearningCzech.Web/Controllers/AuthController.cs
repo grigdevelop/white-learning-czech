@@ -39,7 +39,7 @@ namespace WhileLearningCzech.Web.Controllers
             var key = JwtConfigs.GetSecurityKey();
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-            var token = new JwtSecurityToken(claims: user.Claims, signingCredentials: creds, expires: DateTime.UtcNow + TimeSpan.FromMinutes(5));
+            var token = new JwtSecurityToken(claims: user.Claims, signingCredentials: creds, expires: DateTime.UtcNow + TimeSpan.FromHours(24));
             var tokenResult = new JwtSecurityTokenHandler().WriteToken(token);
             return Ok(new { token = tokenResult });
         }

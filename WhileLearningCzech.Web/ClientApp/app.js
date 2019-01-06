@@ -2,8 +2,9 @@
     angular.module("learningApp.ctrl", []);
     angular.module("learningApp.comp", []);
     angular.module("learningApp.services", []);
+    angular.module("learningApp.dirs", []);
     var app = angular.module("learningApp",
-        ["ui.router", "learningApp.ctrl", "learningApp.comp", "learningApp.services"]);
+        ["ui.router","ngAnimate", "learningApp.ctrl", "learningApp.comp", "learningApp.services", "learningApp.dirs"]);
     app.config(["$stateProvider", "$urlRouterProvider", "$locationProvider",
         function ($stateProvider, $urlRouterProvider, $locationProvider) {
             //$locationProvider.hashPrefix("!");
@@ -15,8 +16,14 @@
             //    controller: "LoginCtrl"
             //});
             var routes = {};
-            routes.login = {
+            routes.home = {
                 url: "/",
+                name: "home",
+                templateUrl: "views/home/home.view.html",
+                controller: "HomeCtrl"
+            };
+            routes.login = {
+                url: "/login",
                 name: "login",
                 templateUrl: "views/login/login.view.html",
                 controller: "LoginCtrl"
@@ -39,6 +46,13 @@
                 templateUrl: "views/admin/wordGroups/wordGroups.view.html",
                 controller: "WordGroupsCtrl"
             };
+            routes.adminArticles = {
+                name: "admin.articles",
+                url: "/articles",
+                templateUrl: "views/admin/articles/articles.view.html",
+                controller: "ArticlesCtrl"
+            };
+
 
             addAuth(routes.admin);
 
@@ -50,14 +64,20 @@
 
 
         }]);
-    app.controller("AppCtrl", ["$state", "$scope",appCtrl]);
+    app.controller("AppCtrl", ["$state", "$scope", appCtrl]);
+
+    app.filter("trust", ["$sce", function ($sce) {
+        return function (htmlCode) {
+            return $sce.trustAsHtml(htmlCode);
+        }
+    }]);
 
     function appCtrl($state, $scope) {
-        
+
         $state.defaultErrorHandler(function (error) {
             console.log("unauthorized request");
         });
-      
+
     }
 
     function addAuth(state) {

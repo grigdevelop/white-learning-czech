@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\directives\" />
+    <Folder Include="ClientApp\components\groups\" />
   </ItemGroup>  
 
 </Project>

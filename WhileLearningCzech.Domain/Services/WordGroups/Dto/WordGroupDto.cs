@@ -9,5 +9,7 @@ namespace WhileLearningCzech.Domain.Services.WordGroups.Dto
 
         [Required]
         public string Name { get; set; }
+
+        public string Description { get; set; }
     }
 }

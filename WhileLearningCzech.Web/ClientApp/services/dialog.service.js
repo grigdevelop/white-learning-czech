@@ -41,6 +41,9 @@
             service.dialogs.showSaveWordDialog = function (word) {
                 publish("saveWordDialog", JSON.parse(JSON.stringify(word)));
             };
+            service.dialogs.showArticleDialog = function (article) {
+                publish("articleDialog", JSON.parse(JSON.stringify(article)));
+            };
         }
 
         service.subscribe = subscribe;

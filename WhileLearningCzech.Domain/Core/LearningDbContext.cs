@@ -14,6 +14,8 @@ namespace WhileLearningCzech.Domain.Core
 
         public DbSet<Word> Words { get; set; }
 
+        public DbSet<Article> Articles { get; set; }
+
         public LearningDbContext(DbContextOptions options)
             :base(options)
         {

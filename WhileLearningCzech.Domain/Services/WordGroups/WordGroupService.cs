@@ -46,6 +46,7 @@ namespace WhileLearningCzech.Domain.Services.WordGroups
                 throw new ApiException("WordGroup with this name already exists");
 
             dbWordGroup.Name = wordGroup.Name;
+            dbWordGroup.Description = wordGroup.Description;
             _db.WordGroups.Update(dbWordGroup);
             await _db.SaveChangesAsync();
 

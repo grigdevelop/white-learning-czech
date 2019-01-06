@@ -1,0 +1,38 @@
+﻿<div class="row">
+    <div class="col">
+        
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="article in articles">
+                <th scope="row">{{ article.id }}</th>
+                <td>{{ article.title }}</td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button ng-click="update(article)" type="button" class="btn btn-info">Update</button>
+                        <button ng-click="delete(article)" type="button" class="btn btn-danger">Delete</button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <button ng-click="create()" class="btn btn-primary">Create article</button>
+    </div>
+</div>
+
+<div class="row">
+    <div ng-repeat="article in articles" class="col-12">
+        <h4>{{ article.title }}</h4>
+        <!--<div ng-bind-html="article.content | trust">
+        </div>-->
+        <rich-viewer content="article.content"></rich-viewer>
+    </div>
+</div>
+
+<article-dialog></article-dialog>
