@@ -73,6 +73,7 @@ namespace WhileLearningCzech.Web
             services.AddScoped<IArticleService, ArticleService>();
             services.AddScoped<IDirService, DirService>();
             services.AddScoped<IHtmlImagesService, HtmlImagesService>();
+            services.AddScoped<IImagesService, ImagesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

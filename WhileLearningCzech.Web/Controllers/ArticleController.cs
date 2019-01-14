@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using WhileLearningCzech.Domain.Services.Articles;
 using WhileLearningCzech.Domain.Services.Articles.Dto;
+using WhileLearningCzech.Domain.Services.Media;
 using WhileLearningCzech.Web.Helpers;
 
 namespace WhileLearningCzech.Web.Controllers
@@ -13,10 +15,12 @@ namespace WhileLearningCzech.Web.Controllers
     public class ArticleController : ControllerBase
     {
         private readonly IArticleService _articleService;
+        private readonly IImagesService _imagesService;
 
-        public ArticleController(IArticleService articleService)
+        public ArticleController(IArticleService articleService, IImagesService imagesService)
         {
             _articleService = articleService;
+            _imagesService = imagesService;
         }
 
         [HttpPost("[action]")]
@@ -42,6 +46,16 @@ namespace WhileLearningCzech.Web.Controllers
         public async Task<IActionResult> Delete([FromBody]ArticleDto input)
         {
             return new JsonResult(await _articleService.Delete(input));
+        }
+
+        [HttpGet("[action]/{name}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> Image(string name)
+        {
+            // Get image path  
+            var id = int.Parse(name.Substring(0, name.LastIndexOf('.')));
+            var image = await _imagesService.GetImageById(id);            
+            return File(image.Data, image.DataType.Replace("data:", string.Empty).Replace("base64", string.Empty));
         }
     }
 }

@@ -13,6 +13,8 @@ namespace WhileLearningCzech.Domain.Services.Media
     public interface IHtmlImagesService
     {
         string ParseHtmlImages(string html);
+
+        List<byte[]> ExtractImagesDataFromHtmlContent(string htmlContent);
     }
 
     public class HtmlImagesService : IHtmlImagesService
@@ -30,6 +32,32 @@ namespace WhileLearningCzech.Domain.Services.Media
             var dir = Path.Combine(_dirService.GetImagesDir(), dateDir);
             if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
             return GetContentHtml(html, dir, Path.Combine("Content/images", dateDir));
+        }
+
+        public List<byte[]> ExtractImagesDataFromHtmlContent(string htmlContent)
+        {
+            // initial empty list
+            List<byte[]> imagesData = new List<byte[]>();
+
+            var document = new HtmlDocument();
+            document.LoadHtml(htmlContent);
+
+            var result = document.DocumentNode.SelectNodes("//img");
+            if (result == null)
+                return imagesData;
+
+            foreach (var img in result)
+            {
+                var src = img.GetAttributeValue("src", string.Empty);
+                if (!string.IsNullOrEmpty(src) && src.StartsWith("data:image"))
+                {
+                    var f = ContentImageFile.Parse(src);
+
+                   
+                }
+            }
+
+            return imagesData;
         }
 
         private string GetCurrentFolderDate()

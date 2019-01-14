@@ -16,10 +16,18 @@ namespace WhileLearningCzech.Domain.Core
 
         public DbSet<Article> Articles { get; set; }
 
+        public DbSet<Image> Images { get; set; }
+
         public LearningDbContext(DbContextOptions options)
             :base(options)
         {
             
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfiguration(new ImageMapper());
         }
     }
 }
