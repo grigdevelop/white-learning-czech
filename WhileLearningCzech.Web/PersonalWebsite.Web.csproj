@@ -23,11 +23,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WhileLearningCzech.Domain\WhileLearningCzech.Domain.csproj" />
+    <Folder Include="ClientApp\components\groups\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\components\groups\" />
+    <ProjectReference Include="..\WhileLearningCzech.Domain\PersonalWebsite.Domain.csproj" />
   </ItemGroup>  
 
 </Project>

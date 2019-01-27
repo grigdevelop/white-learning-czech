@@ -1,11 +1,8 @@
 using System.IO;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,7 +16,6 @@ using WhileLearningCzech.Domain.Services.Users;
 using WhileLearningCzech.Domain.Services.WordGroups;
 using WhileLearningCzech.Domain.Services.Words;
 using WhileLearningCzech.Web.Helpers;
-using WhileLearningCzech.Web.Services;
 
 namespace WhileLearningCzech.Web
 {
@@ -70,15 +66,13 @@ namespace WhileLearningCzech.Web
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IWordGroupService, WordGroupService>();
             services.AddScoped<IWordService, WordService>();
-            services.AddScoped<IArticleService, ArticleService>();
-            services.AddScoped<IDirService, DirService>();
-            services.AddScoped<IHtmlImagesService, HtmlImagesService>();
+            services.AddScoped<IArticleService, ArticleService>();           
             services.AddScoped<IImagesService, ImagesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
+        {                        
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -88,6 +82,7 @@ namespace WhileLearningCzech.Web
                 app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
+            
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

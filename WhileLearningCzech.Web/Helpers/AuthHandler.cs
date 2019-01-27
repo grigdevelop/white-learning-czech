@@ -1,19 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using WhileLearningCzech.Domain.Services.Users;
 using WhileLearningCzech.Domain.Services.Users.Dto;
 
-namespace WhileLearningCzech.Web.Helpers
+namespace PersonalWebsite.Web.Helpers
 {
     public class AuthHandler : AuthenticationHandler<AuthenticationSchemeOptions>
     {

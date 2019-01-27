@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
+using PersonalWebsite.Domain.Core.Data;
 using WhileLearningCzech.Domain.Core.Data;
 
 namespace WhileLearningCzech.Domain.Core

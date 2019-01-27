@@ -3,13 +3,22 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhileLearningCzech.Web", "WhileLearningCzech.Web\WhileLearningCzech.Web.csproj", "{5C76308C-45DE-4AE9-A47C-5AD9493D2836}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalWebsite.Web", "WhileLearningCzech.Web\PersonalWebsite.Web.csproj", "{5C76308C-45DE-4AE9-A47C-5AD9493D2836}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhileLearningCzech.Domain", "WhileLearningCzech.Domain\WhileLearningCzech.Domain.csproj", "{CB0C1B9D-8A60-483B-A215-C301D897BBA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalWebsite.Domain", "WhileLearningCzech.Domain\PersonalWebsite.Domain.csproj", "{CB0C1B9D-8A60-483B-A215-C301D897BBA9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalWebsite.Tests", "PersonalWebsite.Tests\PersonalWebsite.Tests.csproj", "{67CED21E-E97B-4A72-BC97-4E6747CB15F3}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "PersonalWebsite.Database", "PersonalWebsite.Database\PersonalWebsite.Database.sqlproj", "{C5BF779C-3455-4813-823A-C0B474D8B6E6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{43EB65FA-C988-4A6E-AD5A-D7D4312070A4}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts\DeployTestDatabase.ps1 = Scripts\DeployTestDatabase.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{92AE0ACD-821C-4E96-9B80-553E129EC043}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseDeploy", "Utilities\DatabaseDeploy\DatabaseDeploy.csproj", "{8EB92CDB-526F-4F4B-9C5D-25FAE7BADFCD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,9 +44,16 @@ Global
 		{C5BF779C-3455-4813-823A-C0B474D8B6E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5BF779C-3455-4813-823A-C0B474D8B6E6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C5BF779C-3455-4813-823A-C0B474D8B6E6}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{8EB92CDB-526F-4F4B-9C5D-25FAE7BADFCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EB92CDB-526F-4F4B-9C5D-25FAE7BADFCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EB92CDB-526F-4F4B-9C5D-25FAE7BADFCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EB92CDB-526F-4F4B-9C5D-25FAE7BADFCD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8EB92CDB-526F-4F4B-9C5D-25FAE7BADFCD} = {92AE0ACD-821C-4E96-9B80-553E129EC043}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B818622C-60F8-47D3-BC5F-634767DBA581}

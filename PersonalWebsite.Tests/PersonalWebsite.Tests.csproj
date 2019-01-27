@@ -1,9 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
 
     <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>$(SolutionFolder)\WhileLearningCzech.Web\bin\Debug\netcoreapp2.1\</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,8 +28,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WhileLearningCzech.Domain\WhileLearningCzech.Domain.csproj" />
-    <ProjectReference Include="..\WhileLearningCzech.Web\WhileLearningCzech.Web.csproj" />
+    <ProjectReference Include="..\WhileLearningCzech.Domain\PersonalWebsite.Domain.csproj" />
+    <ProjectReference Include="..\WhileLearningCzech.Web\PersonalWebsite.Web.csproj" />
   </ItemGroup>
 
 </Project>

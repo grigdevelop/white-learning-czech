@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[Articles]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	[Title] NVARCHAR(255) NOT NULL,
+	[Content] NVARCHAR(MAX),
+	[DatePublished] DATETIME2(7)
+)

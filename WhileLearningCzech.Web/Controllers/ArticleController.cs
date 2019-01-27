@@ -1,13 +1,13 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
+using PersonalWebsite.Web.Helpers;
 using WhileLearningCzech.Domain.Services.Articles;
 using WhileLearningCzech.Domain.Services.Articles.Dto;
 using WhileLearningCzech.Domain.Services.Media;
 using WhileLearningCzech.Web.Helpers;
 
-namespace WhileLearningCzech.Web.Controllers
+namespace PersonalWebsite.Web.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

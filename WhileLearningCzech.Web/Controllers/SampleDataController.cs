@@ -1,13 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using PersonalWebsite.Web.Helpers;
 using WhileLearningCzech.Web.Helpers;
 
-namespace WhileLearningCzech.Web.Controllers
+namespace PersonalWebsite.Web.Controllers
 {
     [ApiAuthorize]
     [Route("api/[controller]")]

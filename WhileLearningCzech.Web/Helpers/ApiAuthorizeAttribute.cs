@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 
-namespace WhileLearningCzech.Web.Helpers
+namespace PersonalWebsite.Web.Helpers
 {
     public class ApiAuthorizeAttribute : AuthorizeAttribute
     {

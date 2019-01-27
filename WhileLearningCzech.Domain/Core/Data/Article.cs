@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using WhileLearningCzech.Domain.Core.Abstract;
 
-namespace WhileLearningCzech.Domain.Core.Data
+namespace PersonalWebsite.Domain.Core.Data
 {
     public class Article : IEntity, IEquatable<Article>
     {

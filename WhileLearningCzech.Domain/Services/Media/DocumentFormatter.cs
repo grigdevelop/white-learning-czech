@@ -52,18 +52,24 @@ namespace WhileLearningCzech.Domain.Services.Media
             {
                 var source = htmlNode.GetAttributeValue("src", string.Empty);
                 if (!source.StartsWith(relativePath)) continue;
-
-                int startIndex = source.LastIndexOf('/') + 1;
-                int endIndex = source.LastIndexOf('.');
-                int length = endIndex - startIndex;
-                var substr = source.Substring(startIndex, length);
-                int id = int.Parse(substr);
+               
+                int id = GetIdFromSource(source);
                 idList.Add(id);
             }
 
 
             return idList;
         }
+
+        private static int GetIdFromSource(string source)
+        {
+            int startIndex = source.LastIndexOf('/') + 1;
+            int endIndex = source.LastIndexOf('.');
+            int length = endIndex - startIndex;
+            var substr = source.Substring(startIndex, length);
+            return int.Parse(substr);
+        }
+
 
         public static bool IsSourceImage(string source)
         {
