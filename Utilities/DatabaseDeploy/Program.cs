@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +13,14 @@ namespace DatabaseDeploy
     {
         static void Main(string[] args)
         {
-            DeployTestDatabase();
+            try
+            {
+                DeployTestDatabase();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             Console.ReadLine();
         }
 
@@ -22,8 +31,10 @@ namespace DatabaseDeploy
             DacDeployOptions options = new DacDeployOptions();
             options.CreateNewDatabase = true;
 
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "PersonalWebsite.Database.dacpac");
+
             Console.WriteLine("Deploying database ...");
-            sc.Deploy(DacPackage.Load("PersonalWebsite.Database.dacpac"), "PersonalWebsiteDb_Test", true, options);
+            sc.Deploy(DacPackage.Load(path), "PersonalWebsiteDb_Test", true, options);
             Console.WriteLine("Database deployed.");
             
         }

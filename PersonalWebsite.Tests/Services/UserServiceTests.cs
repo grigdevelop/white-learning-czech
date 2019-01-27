@@ -9,6 +9,7 @@ using WhileLearningCzech.Domain.Services.Users;
 
 namespace PersonalWebsite.Tests.Services
 {
+    [TestClass]
     public class UserServiceTests : TestBase
     {
         [TestInitialize]

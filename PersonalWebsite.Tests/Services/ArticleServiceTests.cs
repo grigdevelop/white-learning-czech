@@ -1,57 +1,144 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WhileLearningCzech.Domain.Core;
+using PersonalWebsite.Domain.Core.Data;
+using PersonalWebsite.Tests.Lib;
 using WhileLearningCzech.Domain.Core.Data;
 using WhileLearningCzech.Domain.Mapper;
 using WhileLearningCzech.Domain.Services.Articles;
 using WhileLearningCzech.Domain.Services.Articles.Dto;
-using WhileLearningCzech.Domain.Services.Media;
 
 namespace PersonalWebsite.Tests.Services
 {
     [TestClass]
     public class ArticleServiceTests
     {
-        [TestMethod]
-        public async Task ShouldCreateArticle()
+        [TestClass]
+        public class ArticleCrud : TestBase
         {
-            AutoMapperExtensions.Configure();
-            DbContextOptionsBuilder builder = new DbContextOptionsBuilder();
-            builder.UseInMemoryDatabase("PersonalDb");
-            LearningDbContext db = new LearningDbContext(builder.Options);
-            IArticleService service = new ArticleService(db);
+            [TestInitialize]
+            public void Init()
+            {
+                CleanDatabase();
+            }
 
-            string html = File.ReadAllText("TestData/ImageSources.html");
+            [TestMethod]
+            public async Task ShouldCreateArticle()
+            {
+                var service = GetService<IArticleService>();
+                var dateNow = DateTime.UtcNow;
+                var article = new ArticleDto
+                {
+                    Title = "this is test article",
+                    Content = "this is content of the test article",
+                    DatePublished = dateNow
+                };
+                var newArticle = await service.Create(article);
 
-            var article = await service.Create(new ArticleDto {Title = "sometitle", Content = html});
-            article = await service.Update(article);
+                newArticle.Should().NotBeNull();
+                newArticle.Title.Should().Be(article.Title);
+                newArticle.Content.Should().Be(article.Content);
+                newArticle.Id.Should().NotBe(0);
 
-            var ws = db.Words.ToList();
+                ForIt<Article>().ShouldContains(x =>
+                    x.Content == article.Content &&
+                    x.Title == article.Title &&
+                    x.Id == newArticle.Id);
+            }
+
+            [TestMethod]
+            public async Task ShouldUpdateArticle()
+            {
+                var article = new Article
+                {
+                    Title = "my title",
+                    Content = "interesting content",
+                    DatePublished = DateTime.UtcNow
+                };
+                ForIt<Article>().WeAlreadyHave(article);
+
+                var service = GetService<IArticleService>();
+                var updatedArticle = article.ToEntityDto<ArticleDto, Article>();
+                updatedArticle.Title = "new title";
+                await service.Update(updatedArticle);
+
+                ForIt<Article>().ShouldContains(x =>
+                    x.Id == article.Id &&
+                    x.Title == updatedArticle.Title);
+            }
+
+            [TestMethod]
+            public async Task ShouldDeleteArticle()
+            {
+                var article = new Article
+                {
+                    Title = "my title",
+                    Content = "interesting content",
+                    DatePublished = DateTime.UtcNow
+                };
+                ForIt<Article>().WeAlreadyHave(article);
+
+                var service = GetService<IArticleService>();
+                await service.Delete(new ArticleDto {Id = article.Id});
+
+                ForIt<Article>().ShouldNotContains(x => x.Id == article.Id);
+            }
         }
 
-        [TestMethod]
-        public void Should()
+
+        [TestClass]
+        public class ArticleImages : TestBase
         {
-            string html = File.ReadAllText("TestData/ImageSources.html");
-            DocumentFormatter df = new DocumentFormatter(html);
-            df.GetImageSources();
+            [TestInitialize]
+            public void Init()
+            {
+                CleanDatabase();
+            }
+
+
+            [TestMethod]
+            public async Task ShouldAddImages()
+            {
+                var article = new ArticleDto
+                {
+                    Title = "Here is the title",
+                    DatePublished = DateTime.UtcNow
+                };
+                article.Content = File.ReadAllText("TestData/Content_With_New_Images.html");
+
+                var service = GetService<IArticleService>();
+                article = await service.Create(article);
+
+                ForIt<Image>().ShouldContains(x => x.ArticleId == article.Id)
+                    .CountShouldBe(2);
+            }
+
+            [TestMethod]
+            public async Task ShouldUpdateImages()
+            {
+                // this part already tested upper
+                var article = new ArticleDto
+                {
+                    Title = "Here is the title",
+                    DatePublished = DateTime.UtcNow
+                };
+                article.Content = File.ReadAllText("TestData/Content_With_New_Images.html");
+                var service = GetService<IArticleService>();
+                article = await service.Create(article);
+
+                // updating images
+                throw new NotImplementedException();
+
+            }
+
+            [TestMethod]
+            public void ShouldDeleteImages()
+            {
+                throw new NotImplementedException();
+            }
         }
 
-        [TestMethod]
-        public void ShouldParseId()
-        {
-            var source = "/images/source/11.jpg";
-            int startIndex = source.LastIndexOf('/') + 1;
-            int endIndex = source.LastIndexOf('.');
-            int length = endIndex - startIndex;
-            var substr = source.Substring(startIndex, length);
-            int id = int.Parse(substr);
-        }
     }
 }

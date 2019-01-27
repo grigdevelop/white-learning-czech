@@ -20,6 +20,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseDeploy", "Utilities\DatabaseDeploy\DatabaseDeploy.csproj", "{8EB92CDB-526F-4F4B-9C5D-25FAE7BADFCD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{69BC76EF-7A91-4FD3-BA96-0B2CF205F934}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{67CED21E-E97B-4A72-BC97-4E6747CB15F3} = {69BC76EF-7A91-4FD3-BA96-0B2CF205F934}
 		{8EB92CDB-526F-4F4B-9C5D-25FAE7BADFCD} = {92AE0ACD-821C-4E96-9B80-553E129EC043}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
